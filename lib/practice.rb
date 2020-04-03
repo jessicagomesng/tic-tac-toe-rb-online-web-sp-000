@@ -39,6 +39,7 @@ def valid_move?(board, index)
   index.between?(0,8) && !position_taken?(board, index)
 end
 
+<<<<<<< HEAD
 #Define #turn_count
 def turn_count(board)
 
@@ -52,6 +53,8 @@ def turn_count(board)
 
 end
 
+=======
+>>>>>>> 0d98309cce9dc239fa803b6050464b8760eee996
 #Define #current_player
 def current_player(board)
   turn_count(board) % 2 == 0 ? "X" : "O"
@@ -59,6 +62,7 @@ end
 
 #Define #turn
 def turn(board)
+<<<<<<< HEAD
   if !full?(board)
     puts "Please enter 1-9:"
     input = gets.strip
@@ -70,6 +74,18 @@ def turn(board)
     else
       turn(board)
     end
+=======
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index, current_player(board))
+    display_board(board)
+
+  else
+    puts "Please enter a valid input between 1-9:"
+    turn(board)
+>>>>>>> 0d98309cce9dc239fa803b6050464b8760eee996
   end
 end
 
@@ -112,7 +128,11 @@ end
 
 #Define #over
 def over?(board)
+<<<<<<< HEAD
   won?(board) || draw?(board)
+=======
+  won?(board) || full?(board)
+>>>>>>> 0d98309cce9dc239fa803b6050464b8760eee996
 end
 
 #Define #winner
@@ -127,6 +147,7 @@ winning_array = []
   end
 end
 
+<<<<<<< HEAD
 #Define #play
 def play(board)
   turn(board) until over?(board)
@@ -137,3 +158,52 @@ def play(board)
     puts "Cat's Game!"
   end
 end
+=======
+def play(board)
+  turn(board)
+
+  loop do
+    turn(board)
+    over?(board)
+
+    if over?(board)
+      if won?(board)
+        puts "Congratulations #{winner(board)}!"
+        break
+      else
+        puts "Cat's Game!"
+        break
+      end
+    end
+
+  end
+end
+
+def turn_count(board)
+
+  turns = 0
+  board.each do |token|
+    if token == "X" || token == "O"
+      turns += 1
+    end
+  end
+  turns
+
+end
+
+#Define #current_player
+def current_player(board)
+  turn_count(board) % 2 == 0 ? "X" : "O"
+end
+
+board1 = ["O", "X", " ", "O", "X", " ", " ", " ", " "]
+board2 = ["X", "O", "X", " ", "X", "X", " ", "X", "O"]
+
+
+
+puts display_board(board2)
+puts won?(board2)
+puts turn_count(board2)
+puts current_player(board2)
+puts turn(board1)
+>>>>>>> 0d98309cce9dc239fa803b6050464b8760eee996
